@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Logowanie</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+    .card{width:100%;max-width:360px;padding:24px;border:1px solid #ddd;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+    h1{font-size:1.25rem;margin:0 0 12px}
+    form{display:grid;gap:12px}
+    label{display:grid;gap:4px;font-size:.9rem}
+    input{padding:10px;border:1px solid #ccc;border-radius:8px;font-size:1rem}
+    button{padding:10px 14px;border:0;border-radius:8px;font-weight:600;cursor:pointer;background:#111;color:#fff}
+    .error{color:#b00020;font-size:.9rem;margin-bottom:8px}
+    .muted{font-size:.85rem;color:#666;text-align:center;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Wymagane logowanie</h1>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <form method="post" action="/login">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}"/>
+      <label>Login
+        <input name="username" autocomplete="username" required>
+      </label>
+      <label>Hasło
+        <input name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <button type="submit">Zaloguj</button>
+    </form>
+    <div class="muted">Po zalogowaniu trafisz do prezentacji.</div>
+  </div>
+</body>
+</html>
